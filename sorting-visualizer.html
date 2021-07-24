@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Algorithm Visualizer</title>
+        <!-- Meta Tags -->
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width,initial-scale=1.0,shrink-to-fit=no" />
+        <!-- Stylesheets and Scripts -->
+    </head>
+    <body id="app">
+        <!-- Start of Navbar -->
+        <header id="header">
+            <nav id="navbar">
+                <div id="navbar__logo">
+                    <a href="index.html">Algorithm Visualizer</a>
+                </div>
+                <div id="navbar__navigation">
+                    <ul>
+                        <li><span class="navbar__link--active">Sorting Visualizer</span></li>
+                    </ul>
+                </div>
+            </nav>
+        </header>
+        <!-- End of Navbar -->
+        <!-- Start of Sidebar -->
+        <aside id="sidebar">
+            <div id="sidebar__hamburger">
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+            </div>
+            <div id="sidebar__function" class="sidebar__section sidebar__element show-desktop">
+                <label class="sidebar__label">Functions</label>
+                <ul>
+                    <li>
+                        <a href="javascript:;" id="sidebar__random-array" class="button button--width-100 button--bg-navy">Generate Random Array</a>
+                    </li>
+                    <li>
+                        <a href="javascript:;" id="sidebar__customised-array" class="button button--width-100 button--bg-navy" data-toggle="modal" data-target="customised-array-modal">Generate Customised Array</a>
+                    </li>
+                </ul>
+            </div>
+            <div id="sidebar__settings" class="sidebar__section sidebar__element show-desktop">
+                <label class="sidebar__label">Settings</label>
+                <ul>
+                    <li>
+                        <label class="label-control">Individual Max Value</label>
+                        <input type="range" min="50" max="1000" id="sidebar__settings-max-value" />
+                    </li>
+                    <li>
+                        <label class="label-control">Number of Items</label>
+                        <input type="range" min="4" max="100" id="sidebar__settings-size" />
+                    </li>
+                    <li>
+                        <label class="label-control">Visualizing Delay</label>
+                        <input type="range" min="1" max="1000" id="sidebar__settings-speed" />
+                    </li>
+                </ul>
+            </div>
+            <div id="sidebar__algorithms" class="sidebar__section sidebar__element show-desktop">
+                <label class="sidebar__label">Algorithms</label>
+                <div id="sidebar__algorithms-reverse-wrapper">
+                    <input type="checkbox" id="sidebar__algorithms-reverse" class="algorithm__checkbox" />
+                    <label for="sidebar__algorithms-reverse">Reversed?</label>
+                </div>
+                <ul>
+                    <li>
+                        <input type="radio" name="sorting-algorithm" id="bubble-sort" class="algorithm__radio" value="bubble-sort" checked />
+                        <label for="bubble-sort" class="algorithm__selector">Bubble Sort</label>
+                    </li>
+                </ul>
+            </div>
+            <div id="sidebar__start" class="sidebar__section sidebar__element show-desktop">
+                <label class="sidebar__label">Start</label>
+                <a href="javascript:;" id="start-visualizing" class="button button--width-100 button--bg-navy">Start Visualizing!</a>
+            </div>
+            <div id="sidebar__footer" class="sidebar__element show-desktop">
+                Copyright &copy; 2021 | bernardawj
+            </div>
+        </aside>
+        <!-- End of Sidebar -->
+        <!-- Start of Visualizer -->
+        <section id="visualizer__wrapper">
+            <div class="container">
+                <div id="visualizer"></div>
+            </div>
+        </section>
+        <!-- End of Visualizer -->
+        <!-- Start of Customised Array Modal -->
+        <div id="modal__customised-array" class="modal">
+            <div class="modal__content">
+                <div class="modal__header">
+                    Generate Customised Array
+                    <a href="javascript:;" class="modal__close" data-toggle="modal" data-target="modal__customised-array">&times;</a>
+                </div>
+                <div class="modal__body">
+                    <div class="group">
+                        <h3 class="group__header">Step 1. Add value to array</h3>
+                        <label class="label-control">Value</label>
+                        <input type="number" id="modal__customised-array-input" class="text-box" min="1" value="1" />
+                        <a href="javascript:;" id="modal__customised-array-add" class="button button--width-100 button--bg-navy">Add</a>
+                    </div>
+                    <div class="group">
+                        <h3 class="group__header">Step 2. Check if value is your expected value and remove if necessary</h3>
+                        <label class="label-control">Expected Output</label>
+                        <div id="array__box">
+                            <div class="array-box__values-wrapper">
+                                [<span id="array-box__values"></span>]
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal__footer">
+                    <a href="javascript:;" class="button button--bg-transparent" data-toggle="modal" data-target="modal__customised-array">Close</a>
+                    <a href="javascript:;" class="button button--bg-navy" id="modal__customised-array-generate">Generate</a>
+                </div>
+            </div>
+        </div>
+        <!-- End of Customised Array Modal -->
+        <!-- Start of Overlay -->
+        <div id="overlay"></div>
+        <!-- End of Overlay -->
+    </body>
+</html>
