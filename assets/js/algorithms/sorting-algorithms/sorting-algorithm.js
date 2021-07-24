@@ -1,4 +1,4 @@
-import { Algorithm } from "../algorithm.js";
+import { Algorithm } from "../../algorithm.js";
 
 export class SortingAlgorithm extends Algorithm {
 

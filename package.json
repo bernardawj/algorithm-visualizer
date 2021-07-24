@@ -1,0 +1,27 @@
+{
+  "name": "algorithm-visualizer",
+  "version": "0.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "jest --verbose"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bernardawj/algorithm-visualizer.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/bernardawj/algorithm-visualizer/issues"
+  },
+  "homepage": "https://github.com/bernardawj/algorithm-visualizer#readme",
+  "devDependencies": {
+    "@babel/plugin-transform-modules-commonjs": "^7.14.5",
+    "babel-jest": "^27.0.2",
+    "jest": "^27.0.4"
+  },
+  "dependencies": {}
+}
