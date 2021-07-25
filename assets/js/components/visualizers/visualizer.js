@@ -6,6 +6,8 @@ export class Visualizer extends Component {
         super();
 
         // Settings
+        this.tabletSize = 991;
+        this.windowWidth = window.innerWidth;
         this.containerHeightPercentage = 90;
         this.minValue = 50;
         this.maxValue = 500;
@@ -20,11 +22,17 @@ export class Visualizer extends Component {
         this.visualizerEl = document.getElementById("visualizer__wrapper");
         this.visualizerContainer = this.visualizerEl.firstElementChild;
         this.visualizer = this.visualizerContainer.firstElementChild;
+
+        this.loadEventHandlers();
     }
 
-    render() {
+    render(refreshSizing = false) {
         this.updateContainerSizing();
-        this.renderArrayData();
+        if (!refreshSizing) {
+            this.renderArrayData();
+        } else {
+            this.updateArrayDimensions();
+        }
     }
 
     reset() {
@@ -39,5 +47,14 @@ export class Visualizer extends Component {
 
     updateContainerSizing() {
         this.visualizerContainer.style.height = (this.containerHeightPercentage / 100) * this.visualizerEl.clientHeight + "px";
+    }
+
+    loadEventHandlers() {
+        // Event handler for resizing window
+        const windowResizeHandler = () => {
+            this.render(true);
+        }
+
+        window.addEventListener("resize", windowResizeHandler);
     }
 }

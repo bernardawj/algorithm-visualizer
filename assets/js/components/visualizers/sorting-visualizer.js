@@ -32,9 +32,9 @@ export class SortingVisualizer extends Visualizer {
 
             // Set styles for each array elements
             const styles = [
-                `height: ${itemHeight}px`,
-                `width: ${itemWidth}px`,
-                `margin-right: ${itemMargin}px`
+                `height: ${ itemHeight }px`,
+                `width: ${ itemWidth }px`,
+                `margin-right: ${ itemMargin }px`
             ];
 
             // Increase font size if item width is larger than expected
@@ -62,6 +62,39 @@ export class SortingVisualizer extends Visualizer {
 
         // Populate visualizer with rendered un-ordered list
         this.visualizer.appendChild(ul);
+    }
+
+    updateArrayDimensions() {
+        const visualizerList = document.getElementById("visualizer__list");
+        const visualizerItems = visualizerList.children;
+
+        // Update array elements sizes based on windows size
+        const highestValue = Math.max(...this.array);
+        for (const item of visualizerItems) {
+            // Calculated values
+            const itemHeight = this.calculateVisualizerItemHeight(item.textContent, highestValue, this.visualizerContainer.clientHeight);
+            const itemWidth = this.calculateVisualizerItemWidth(this.array.length, this.visualizerContainer.clientWidth);
+            const itemMargin = this.calculateVisualizerItemMarginWidth(this.array.length);
+
+            const styles = [
+                `height: ${ itemHeight }px`,
+                `width: ${ itemWidth }px`,
+                `margin-right: ${ itemMargin }px`
+            ];
+
+            // Increase font size if item width is larger than expected
+            if (itemWidth > this.increaseTextWidth) {
+                styles.push("font-size: 24px");
+                styles.push("line-height: 2em");
+            }
+
+            // Check if item size is lesser
+            if (itemWidth < this.hideTextWidth) {
+                styles.push("color: transparent");
+            }
+
+            item.setAttribute("style", styles.join("; "));
+        }
     }
 
     calculateVisualizerItemHeight(value, highestValue, containerHeight) {
