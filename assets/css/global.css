@@ -229,7 +229,7 @@ input[disabled] {
 #sidebar__hamburger > .hamburger-line {
     display: block;
     height: 2px;
-    width: 18px;
+    width: 16px;
     background-color: #00274e;
     margin: 3px 0;
     border-radius: 10px;
@@ -246,7 +246,7 @@ input[disabled] {
 
 #sidebar__hamburger.hamburger--active {
     position: absolute;
-    top: 30px;
+    top: 24px;
     right: 20px;
     -webkit-transform: translateY(-50%);
     -moz-transform: translateY(-50%);
@@ -380,6 +380,20 @@ input[disabled] {
     left: 400px;
     width: calc(100% - 400px);
     background-color: #F6F6F6;
+}
+
+#visualizer__list > li {
+    display: inline-block;
+    background-color: #00274e;
+    color: #F6F6F6;
+    text-align: center;
+    vertical-align: bottom;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+#visualizer__list > li:nth-last-child(1) {
+    margin-right: 0 !important;
 }
 
 /***************************************
@@ -578,8 +592,8 @@ input[class="algorithm__radio"][disabled] + .algorithm__selector {
 	}
 	
 	#visualizer__wrapper {
-		left: 48px;
-		width: calc(100% - 48px);
+		left: 46px;
+		width: calc(100% - 46px);
 	}
 	
 	#sidebar,
