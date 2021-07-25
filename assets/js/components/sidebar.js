@@ -17,6 +17,9 @@ export class Sidebar extends Component {
         this.sizeRange = document.getElementById("sidebar__settings-size");
         this.speedRange = document.getElementById("sidebar__settings-speed");
         this.reverseCbx = document.getElementById("sidebar__algorithms-reverse");
+        this.hamburgerBtn = document.getElementById("sidebar__hamburger");
+        this.overlay = document.getElementById("overlay");
+        this.sidebarElements = document.getElementsByClassName("sidebar__element");
 
         // Initialize
         this.loadSettings(visualizer);
@@ -60,10 +63,51 @@ export class Sidebar extends Component {
             visualizer.isDescendingOrder = evt.target.checked;
         };
 
+        const windowResizeHandler = () => {
+            visualizer.windowWidth = window.innerWidth;
+            if (visualizer.windowWidth > visualizer.tabletSize) {
+                this.resetSidebar();
+            }
+        };
+
         this.generatorBtn.addEventListener("click", generatorBtnHandler);
         this.maxValueRange.addEventListener("input", maxValueRangeHandler);
         this.sizeRange.addEventListener("input", sizeRangeHandler);
         this.speedRange.addEventListener("input", speedRangeHandler);
         this.reverseCbx.addEventListener("change", reverseCbxHandler);
+        this.hamburger();
+
+        window.addEventListener("resize", windowResizeHandler);
     }
+
+    hamburger() {
+        const hamburgerBtnHandler = () => {
+            for (const element of this.sidebarElements) {
+                element.classList.toggle("show-desktop");
+            }
+
+            this.hamburgerBtn.classList.toggle("hamburger--active");
+            this.overlay.classList.toggle("overlay--active");
+        }
+
+        this.hamburgerBtn.addEventListener("click", hamburgerBtnHandler);
+    }
+
+    showSidebar() {
+        this.overlay.classList.add("overlay--active");
+        this.hamburgerBtn.classList.add("hamburger--active");
+
+        for (const element of this.sidebarElements) {
+            element.classList.remove("show-desktop");
+        }
+    };
+
+    resetSidebar() {
+        this.overlay.classList.remove("overlay--active");
+        this.hamburgerBtn.classList.remove("hamburger--active");
+
+        for (const element of this.sidebarElements) {
+            element.classList.add("show-desktop");
+        }
+    };
 }

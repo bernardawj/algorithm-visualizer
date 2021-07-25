@@ -246,7 +246,7 @@ input[disabled] {
 
 #sidebar__hamburger.hamburger--active {
     position: absolute;
-    top: 24px;
+    top: 29px;
     right: 20px;
     -webkit-transform: translateY(-50%);
     -moz-transform: translateY(-50%);
@@ -590,6 +590,10 @@ input[class="algorithm__radio"][disabled] + .algorithm__selector {
 	#sidebar {
 		padding: 15px;
 	}
+
+    #sidebar__hamburger.hamburger--active {
+        top: 24px;
+    }
 	
 	#visualizer__wrapper {
 		left: 46px;
@@ -600,9 +604,4 @@ input[class="algorithm__radio"][disabled] + .algorithm__selector {
 	#visualizer__wrapper {
 		height: calc(100% - 54px);
 	}
-	
-    #sidebar__algorithms > ul > li {
-        width: 100%;
-        padding: 0;
-    }
 }
