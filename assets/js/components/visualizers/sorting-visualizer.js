@@ -1,5 +1,12 @@
 import { Visualizer } from "./visualizer.js";
 import { ElementAttribute } from "../element-attribute.js";
+import { SortingAnimator } from "../../animators/sorting-animator.js";
+import { sortingType } from "../../algorithms/sorting-algorithms/sorting-type.js";
+import { BubbleSortingAlgorithm } from "../../algorithms/sorting-algorithms/bubble-sorting-algorithm.js";
+import { InsertionSortingAlgorithm } from "../../algorithms/sorting-algorithms/insertion-sorting-algorithm.js";
+import { SelectionSortingAlgorithm } from "../../algorithms/sorting-algorithms/selection-sorting-algorithm.js";
+import { MergeSortingAlgorithm } from "../../algorithms/sorting-algorithms/merge-sorting-algorithm.js";
+import { QuickSortingAlgorithm } from "../../algorithms/sorting-algorithms/quick-sorting-algorithm.js";
 
 export class SortingVisualizer extends Visualizer {
 
@@ -10,6 +17,32 @@ export class SortingVisualizer extends Visualizer {
         this.itemMarginSize = 3;
         this.hideTextWidth = 25;
         this.increaseTextWidth = 75;
+
+        // Animator
+        this.animator = new SortingAnimator(this);
+    }
+
+    visualize(sidebar, selectedAlgorithm) {
+        // Execute algorithm based on selection
+        switch (selectedAlgorithm) {
+            case sortingType.BUBBLE_SORT:
+                BubbleSortingAlgorithm.sort(this.animator, this.array, this.isDescendingOrder);
+                break;
+            case sortingType.INSERTION_SORT:
+                InsertionSortingAlgorithm.sort(this.animator, this.array, this.isDescendingOrder);
+                break;
+            case sortingType.SELECTION_SORT:
+                SelectionSortingAlgorithm.sort(this.animator, this.array, this.isDescendingOrder);
+                break;
+            case sortingType.MERGE_SORT:
+                MergeSortingAlgorithm.sort(this.animator, this.array, this.isDescendingOrder);
+                break;
+            case sortingType.QUICK_SORT:
+                QuickSortingAlgorithm.sort(this.animator, this.array, this.isDescendingOrder);
+                break;
+        }
+
+        this.animator.animate(sidebar);
     }
 
     renderArrayData() {

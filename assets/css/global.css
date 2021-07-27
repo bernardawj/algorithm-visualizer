@@ -392,6 +392,27 @@ input[disabled] {
     font-weight: 700;
 }
 
+#visualizer__list > li.visualizer__list-searching-position {
+    background-color: #ff9999;
+    color: #00274e;
+}
+
+#visualizer__list > li.visualizer__list-animation-completed {
+    background-color: #ffdb99;
+    color: #00274e;
+}
+
+#visualizer__list > li.visualizer__list-pre-swapped-position,
+#visualizer__list > li.visualizer__list-swapping-position {
+    background-color: #ffc966;
+    color: #00274e;
+}
+
+#visualizer__list > li.visualizer__list-swapped-position {
+    background-color: #99ff99;
+    color: #00274e;
+}
+
 #visualizer__list > li:nth-last-child(1) {
     margin-right: 0 !important;
 }

@@ -14,9 +14,12 @@ export class Sidebar extends Component {
 
         // DOM elements
         this.generatorBtn = document.getElementById("sidebar__random-array");
+        this.customisedArrayBtn = document.getElementById("sidebar__customised-array");
         this.maxValueRange = document.getElementById("sidebar__settings-max-value");
         this.sizeRange = document.getElementById("sidebar__settings-size");
         this.speedRange = document.getElementById("sidebar__settings-speed");
+        this.algorithmRadioBtns = document.getElementsByClassName("algorithm__radio");
+        this.startVisualizingBtn = document.getElementById("start-visualizing");
         this.reverseCbx = document.getElementById("sidebar__algorithms-reverse");
         this.hamburgerBtn = document.getElementById("sidebar__hamburger");
         this.overlay = document.getElementById("overlay");
@@ -62,6 +65,30 @@ export class Sidebar extends Component {
             visualizer.speed = this.speedRange.value;
         };
 
+        // Event handler to start visualizing
+        const startVisualizingBtnHandler = () => {
+            // Get selected algorithm and check if the returned value is in a valid state
+            let selectedAlgorithm = this.getSelectedAlgorithm();
+            if (!selectedAlgorithm) {
+                return;
+            }
+
+            // Check if visualizer is running
+            if (visualizer.isRunning) {
+                return;
+            }
+
+            // Disable controls
+            visualizer.isRunning = true;
+            this.disableControls();
+            if (visualizer.windowWidth <= visualizer.tabletSize) {
+                this.resetSidebar();
+            }
+
+            // Animate visualizer
+            visualizer.visualize(this, selectedAlgorithm);
+        };
+
         // Event handler for toggling reverse checkbox
         const reverseCbxHandler = (evt) => {
             visualizer.isDescendingOrder = evt.target.checked;
@@ -88,6 +115,7 @@ export class Sidebar extends Component {
         this.maxValueRange.addEventListener("input", maxValueRangeHandler);
         this.sizeRange.addEventListener("input", sizeRangeHandler);
         this.speedRange.addEventListener("input", speedRangeHandler);
+        this.startVisualizingBtn.addEventListener("click", startVisualizingBtnHandler);
         this.reverseCbx.addEventListener("change", reverseCbxHandler);
         this.customisedArray(visualizer);
         this.hamburger();
@@ -205,5 +233,43 @@ export class Sidebar extends Component {
 
     closeModal() {
         this.customisedArrayModal.classList.remove("show");
+    }
+
+    getSelectedAlgorithm() {
+        for (const radio of this.algorithmRadioBtns) {
+            if (radio.checked) {
+                return radio.value;
+            }
+        }
+
+        return null;
+    }
+
+    disableControls() {
+        this.maxValueRange.disabled = true;
+        this.sizeRange.disabled = true;
+        this.reverseCbx.disabled = true;
+        this.generatorBtn.classList.add("button__disabled");
+        this.customisedArrayBtn.classList.add("button__disabled");
+        this.startVisualizingBtn.classList.add("button__disabled");
+        for (const radio of this.algorithmRadioBtns) {
+            if (!radio.checked) {
+                radio.disabled = true;
+            }
+        }
+    }
+
+    enableControls() {
+        this.maxValueRange.disabled = false;
+        this.sizeRange.disabled = false;
+        this.reverseCbx.disabled = false;
+        this.generatorBtn.classList.remove("button__disabled");
+        this.customisedArrayBtn.classList.remove("button__disabled");
+        this.startVisualizingBtn.classList.remove("button__disabled");
+        for (const radio of this.algorithmRadioBtns) {
+            if (!radio.checked) {
+                radio.disabled = false;
+            }
+        }
     }
 }
