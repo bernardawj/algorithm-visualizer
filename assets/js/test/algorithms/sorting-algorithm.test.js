@@ -3,14 +3,23 @@ import { InsertionSortingAlgorithm } from "../../algorithms/sorting-algorithms/i
 import { SelectionSortingAlgorithm } from "../../algorithms/sorting-algorithms/selection-sorting-algorithm";
 import { MergeSortingAlgorithm } from "../../algorithms/sorting-algorithms/merge-sorting-algorithm";
 import { QuickSortingAlgorithm } from "../../algorithms/sorting-algorithms/quick-sorting-algorithm";
+import { SortingAnimator } from "../../animators/sorting-animator";
 
 const array = [5, 1, 11, 10, 2, 8];
+
+// Mock class behavior
+jest.mock("../../animators/sorting-animator");
+const animator = new SortingAnimator();
+
+beforeEach(() => {
+    SortingAnimator.mockClear();
+});
 
 describe("Sorting Algorithms", () => {
     describe("Bubble Sort", () => {
         test("should sort in ascending order", () => {
             const replicatedArray = array.slice();
-            BubbleSortingAlgorithm.sort(replicatedArray, false);
+            BubbleSortingAlgorithm.sort(animator, replicatedArray, false);
 
             expect(replicatedArray[0]).toBe(1);
             expect(replicatedArray[1]).toBe(2);
@@ -22,7 +31,7 @@ describe("Sorting Algorithms", () => {
 
         test("should sort in descending order", () => {
             const replicatedArray = array.slice();
-            BubbleSortingAlgorithm.sort(replicatedArray, true);
+            BubbleSortingAlgorithm.sort(animator, replicatedArray, true);
 
             expect(replicatedArray[0]).toBe(11);
             expect(replicatedArray[1]).toBe(10);
@@ -36,7 +45,7 @@ describe("Sorting Algorithms", () => {
     describe("Insertion Sort", () => {
         test("should sort in ascending order", () => {
             const replicatedArray = array.slice();
-            InsertionSortingAlgorithm.sort(replicatedArray, false);
+            InsertionSortingAlgorithm.sort(animator, replicatedArray, false);
 
             expect(replicatedArray[0]).toBe(1);
             expect(replicatedArray[1]).toBe(2);
@@ -48,7 +57,7 @@ describe("Sorting Algorithms", () => {
 
         test("should sort in descending order", () => {
             const replicatedArray = array.slice();
-            InsertionSortingAlgorithm.sort(replicatedArray, true);
+            InsertionSortingAlgorithm.sort(animator, replicatedArray, true);
 
             expect(replicatedArray[0]).toBe(11);
             expect(replicatedArray[1]).toBe(10);
@@ -62,7 +71,7 @@ describe("Sorting Algorithms", () => {
     describe("Selection Sort", () => {
         test("should sort in ascending order", () => {
             const replicatedArray = array.slice();
-            SelectionSortingAlgorithm.sort(replicatedArray, false);
+            SelectionSortingAlgorithm.sort(animator, replicatedArray, false);
 
             expect(replicatedArray[0]).toBe(1);
             expect(replicatedArray[1]).toBe(2);
@@ -74,7 +83,7 @@ describe("Sorting Algorithms", () => {
 
         test("should sort in descending order", () => {
             const replicatedArray = array.slice();
-            SelectionSortingAlgorithm.sort(replicatedArray, true);
+            SelectionSortingAlgorithm.sort(animator, replicatedArray, true);
 
             expect(replicatedArray[0]).toBe(11);
             expect(replicatedArray[1]).toBe(10);
@@ -88,7 +97,7 @@ describe("Sorting Algorithms", () => {
     describe("Merge Sort", () => {
         test("should sort in ascending order", () => {
             const replicatedArray = array.slice();
-            MergeSortingAlgorithm.sort(replicatedArray, false);
+            MergeSortingAlgorithm.sort(animator, replicatedArray, false);
 
             expect(replicatedArray[0]).toBe(1);
             expect(replicatedArray[1]).toBe(2);
@@ -100,7 +109,7 @@ describe("Sorting Algorithms", () => {
 
         test("Should sort in descending order", () => {
             const replicatedArray = array.slice();
-            MergeSortingAlgorithm.sort(replicatedArray, true);
+            MergeSortingAlgorithm.sort(animator, replicatedArray, true);
 
             expect(replicatedArray[0]).toBe(11);
             expect(replicatedArray[1]).toBe(10);
@@ -114,7 +123,7 @@ describe("Sorting Algorithms", () => {
     describe("Quick Sort", () => {
         test("should sort in ascending order", () => {
             const replicatedArray = array.slice();
-            QuickSortingAlgorithm.sort(replicatedArray, false);
+            QuickSortingAlgorithm.sort(animator, replicatedArray, false);
 
             expect(replicatedArray[0]).toBe(1);
             expect(replicatedArray[1]).toBe(2);
@@ -126,7 +135,7 @@ describe("Sorting Algorithms", () => {
 
         test("Should sort in descending order", () => {
             const replicatedArray = array.slice();
-            QuickSortingAlgorithm.sort(replicatedArray, true);
+            QuickSortingAlgorithm.sort(animator, replicatedArray, true);
 
             expect(replicatedArray[0]).toBe(11);
             expect(replicatedArray[1]).toBe(10);
