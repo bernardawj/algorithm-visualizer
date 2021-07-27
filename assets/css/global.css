@@ -392,6 +392,12 @@ input[disabled] {
     font-weight: 700;
 }
 
+#visualizer__list > li.visualizer__list-found-minimum-position {
+    background-color: #800080;
+    color: #F6F6F6;
+}
+
+#visualizer__list > li.visualizer__list-final-position,
 #visualizer__list > li.visualizer__list-searching-position {
     background-color: #ff9999;
     color: #00274e;
