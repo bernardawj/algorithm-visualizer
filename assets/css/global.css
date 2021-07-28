@@ -637,6 +637,10 @@ input[class="algorithm__radio"][disabled] + .algorithm__selector {
         width: calc(100% - 62px);
     }
 
+    .modal {
+        z-index: 13;
+    }
+
     .modal__content {
         width: 90%;
     }
@@ -654,6 +658,19 @@ input[class="algorithm__radio"][disabled] + .algorithm__selector {
     #sidebar__footer {
         position: relative;
         padding: 0;
+    }
+}
+
+@media only screen and (max-height: 600px) {
+    .modal__content {
+        max-height: 90%;
+        overflow-y: scroll;
+    }
+}
+
+@media only screen and (max-width: 900px) {
+    #alert {
+        z-index: 11;
     }
 }
 
