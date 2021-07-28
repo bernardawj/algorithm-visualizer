@@ -46,7 +46,7 @@ export class Sidebar extends Component {
         const generatorBtnHandler = () => {
             Generator.generateArray(visualizer.array, visualizer.minValue, visualizer.maxValue, visualizer.size);
             visualizer.reRender();
-            visualizer.alert.addAlert(new AlertAttribute(alertType.SUCCESS, "Generated random array."));
+            visualizer.alert.addAlert(new AlertAttribute(alertType.INFO, "Generated random array."));
         };
 
         // Event handler to update max value of array item
@@ -54,8 +54,12 @@ export class Sidebar extends Component {
             visualizer.maxValue = this.maxValueRange.value;
             Generator.generateArray(visualizer.array, visualizer.minValue, visualizer.maxValue, visualizer.size);
             visualizer.reRender();
+        };
+
+        // Event handler for updating max value of array item on change event
+        const maxValueRangeOnChangeHandler = () => {
             visualizer.alert.addAlert(
-                new AlertAttribute(alertType.SUCCESS, `Generated random array with array value of ${visualizer.minValue} - ${visualizer.maxValue}.`));
+                new AlertAttribute(alertType.INFO, `Generated random array with array value of ${ visualizer.minValue } - ${ visualizer.maxValue }.`));
         };
 
         // Event handler to update size of array
@@ -63,15 +67,23 @@ export class Sidebar extends Component {
             visualizer.size = this.sizeRange.value;
             Generator.generateArray(visualizer.array, visualizer.minValue, visualizer.maxValue, visualizer.size);
             visualizer.reRender();
+        };
+
+        // Event handler for updating size of array on change event
+        const sizeRangeOnChangeHandler = () => {
             visualizer.alert.addAlert(
-                new AlertAttribute(alertType.SUCCESS, `Generated random array with array length of ${visualizer.size}.`));
+                new AlertAttribute(alertType.INFO, `Generated random array with array length of ${ visualizer.size }.`));
         };
 
         // Event handler to update speed of visualizer
         const speedRangeHandler = () => {
             visualizer.speed = this.speedRange.value;
+        };
+
+        // Event handler for updating speed of visualizer on change event
+        const speedRangeOnChangeHandler = () => {
             visualizer.alert.addAlert(
-                new AlertAttribute(alertType.SUCCESS, `Current visualizing speed: ${visualizer.speed}ms.`));
+                new AlertAttribute(alertType.INFO, `Current visualizing speed: ${ visualizer.speed }ms.`));
         };
 
         // Event handler to start visualizing
@@ -89,7 +101,7 @@ export class Sidebar extends Component {
 
             // Disable controls
             visualizer.isRunning = true;
-            visualizer.alert.addAlert(new AlertAttribute(alertType.INFO, `Started visualizing with ${selectedAlgorithm} algorithm.`));
+            visualizer.alert.addAlert(new AlertAttribute(alertType.INFO, `Started visualizing with ${ selectedAlgorithm } algorithm.`));
             this.disableControls();
             if (visualizer.windowWidth <= visualizer.tabletSize) {
                 this.resetSidebar();
@@ -122,8 +134,11 @@ export class Sidebar extends Component {
 
         this.generatorBtn.addEventListener("click", generatorBtnHandler);
         this.maxValueRange.addEventListener("input", maxValueRangeHandler);
+        this.maxValueRange.addEventListener("change", maxValueRangeOnChangeHandler);
         this.sizeRange.addEventListener("input", sizeRangeHandler);
+        this.sizeRange.addEventListener("change", sizeRangeOnChangeHandler);
         this.speedRange.addEventListener("input", speedRangeHandler);
+        this.speedRange.addEventListener("change", speedRangeOnChangeHandler);
         this.startVisualizingBtn.addEventListener("click", startVisualizingBtnHandler);
         this.reverseCbx.addEventListener("change", reverseCbxHandler);
         this.customisedArray(visualizer);
@@ -214,7 +229,7 @@ export class Sidebar extends Component {
             visualizer.array.splice(0, visualizer.array.length, ...numbers);
             visualizer.reRender();
             visualizer.alert.addAlert(
-                new AlertAttribute(alertType.SUCCESS, "Generated customised array."));
+                new AlertAttribute(alertType.INFO, "Generated customised array."));
             closeBtn.click();
         };
 
