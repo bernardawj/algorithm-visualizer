@@ -17,6 +17,7 @@ export class Visualizer extends Component {
         // Attributes
         this.array = [];
         this.elements = [];
+        this.isRunning = false;
 
         // DOM elements
         this.visualizerEl = document.getElementById("visualizer__wrapper");
@@ -42,7 +43,7 @@ export class Visualizer extends Component {
 
     reRender() {
         this.reset();
-        this.render();
+        this.render(false);
     }
 
     updateContainerSizing() {

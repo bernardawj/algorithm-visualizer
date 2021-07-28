@@ -25,7 +25,8 @@ export class SelectionSortingAlgorithm extends SortingAlgorithm {
 
                     if (array[j] < min) {
                         // Add animation based on
-                        animator.addAnimation(new Animation(action.FOUND_MINIMUM, [index, j])); // Previous index, new index
+                        animator.addAnimation(
+                            new Animation(action.FOUND_MINIMUM, [index, j])); // Previous index, new index
 
                         // Update minimum value and index
                         min = array[j];
@@ -36,8 +37,7 @@ export class SelectionSortingAlgorithm extends SortingAlgorithm {
                 // Swap the value from the unsorted subarray to the sorted subarray
                 SelectionSortingAlgorithm.swap(animator, array, i, index);
             }
-        }
-        else {
+        } else {
             for (let i = array.length - 1; i >= 0; i--) {
                 let min = array[i];
                 let index = i;
@@ -49,7 +49,8 @@ export class SelectionSortingAlgorithm extends SortingAlgorithm {
 
                     if (array[j] < min) {
                         // Add animation based on
-                        animator.addAnimation(new Animation(action.FOUND_MINIMUM, [index, j])); // Previous index, new index
+                        animator.addAnimation(
+                            new Animation(action.FOUND_MINIMUM, [index, j])); // Previous index, new index
 
                         // Update minimum value and index
                         min = array[j];

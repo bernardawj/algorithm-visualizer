@@ -17,6 +17,7 @@ export class SortingVisualizer extends Visualizer {
         this.itemMarginSize = 3;
         this.hideTextWidth = 25;
         this.increaseTextWidth = 75;
+        this.isDescendingOrder = false;
 
         // Animator
         this.animator = new SortingAnimator(this);

@@ -9,8 +9,8 @@ export class QuickSortingAlgorithm extends SortingAlgorithm {
     }
 
     static sort(animator, array, descendingOrder = false) {
-        // One of the quickest sorting algorithm that uses divide and conquer to split its values up to sub-arrays and compares values within the sub array
-        // using the pivot point to determine the placement of each value
+        // One of the quickest sorting algorithm that uses divide and conquer to split its values up to sub-arrays and
+        // compares values within the sub array using the pivot point to determine the placement of each value
         // Time complexity = O(nLog(n))
 
         QuickSortingAlgorithm.split(animator, array, descendingOrder);

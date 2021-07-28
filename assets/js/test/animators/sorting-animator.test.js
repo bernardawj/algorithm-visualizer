@@ -28,9 +28,9 @@ describe("Sorting Animator Class", () => {
     });
 
     test("should not throw an error if sidebar is an instance of Sidebar when passed into animate function", () => {
-       const animator = new SortingAnimator(visualizer);
-       expect(() => {
-           animator.animate(sidebar);
-       }).not.toThrow(new Error("Sidebar is not initialized."));
+        const animator = new SortingAnimator(visualizer);
+        expect(() => {
+            animator.animate(sidebar);
+        }).not.toThrow(new Error("Sidebar is not initialized."));
     });
 });

@@ -6,14 +6,14 @@ export class MergeSortingAlgorithm extends SortingAlgorithm {
         super();
     }
 
-    static sort(array, descendingOrder = false) {
+    static sort(animator, array, descendingOrder = false) {
         // One of the quickest sorting algorithm that uses divide and conquer to split its values up to sub-arrays and
         // merge them back according to its value Time complexity = O(nLog(n))
 
-        MergeSortingAlgorithm.split(array, descendingOrder);
+        MergeSortingAlgorithm.split(animator, array, descendingOrder);
     }
 
-    static split(array, descendingOrder) {
+    static split(animator, array, descendingOrder) {
         // Base condition
         if (array.length <= 1) {
             return;
@@ -27,21 +27,20 @@ export class MergeSortingAlgorithm extends SortingAlgorithm {
         for (let i = 0; i < array.length; i++) {
             if (i < mid) {
                 leftArray[i] = array[i];
-            }
-            else {
+            } else {
                 rightArray[i - mid] = array[i];
             }
         }
 
         // Divide left and right arrays
-        MergeSortingAlgorithm.split(leftArray, descendingOrder);
-        MergeSortingAlgorithm.split(rightArray, descendingOrder);
+        MergeSortingAlgorithm.split(animator, leftArray, descendingOrder);
+        MergeSortingAlgorithm.split(animator, rightArray, descendingOrder);
 
         // Then merge back both arrays
-        MergeSortingAlgorithm.merge(array, leftArray, rightArray, descendingOrder);
+        MergeSortingAlgorithm.merge(animator, array, leftArray, rightArray, descendingOrder);
     }
 
-    static merge(mainArray, leftArray, rightArray, descendingOrder) {
+    static merge(animator, mainArray, leftArray, rightArray, descendingOrder) {
         let leftIndex = 0, rightIndex = 0, arrayIndex = 0;
 
         // Merge the array values until one side is exhausted
@@ -49,8 +48,7 @@ export class MergeSortingAlgorithm extends SortingAlgorithm {
             const condition = !descendingOrder ? leftArray[leftIndex] < rightArray[rightIndex] : leftArray[leftIndex] > rightArray[rightIndex];
             if (condition) {
                 mainArray[arrayIndex++] = leftArray[leftIndex++];
-            }
-            else {
+            } else {
                 mainArray[arrayIndex++] = rightArray[rightIndex++];
             }
         }

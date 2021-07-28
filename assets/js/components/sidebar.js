@@ -98,8 +98,7 @@ export class Sidebar extends Component {
         const modalBtnHandler = () => {
             if (this.customisedArrayModal.classList.contains("show")) {
                 this.closeModal();
-            }
-            else {
+            } else {
                 this.showModal();
             }
         };
@@ -147,7 +146,7 @@ export class Sidebar extends Component {
         const arrayValues = document.getElementById("array-box__values");
 
         // Event handler to add values into custom array
-        const arrayValueAddBtnHandler = (evt) => {
+        const arrayValueAddBtnHandler = () => {
             if (!visualizer.isRunning) {
                 const value = parseInt(input.value);
                 numbers.push(value);
@@ -171,10 +170,9 @@ export class Sidebar extends Component {
 
                 let a;
                 if (i !== numbers.length - 1) {
-                    a = Component.createRootElement("a", aSettings, "", `${numbers[i]} &times;, `);
-                }
-                else {
-                    a = Component.createRootElement("a", aSettings, "", `${numbers[i]} &times;`);
+                    a = Component.createRootElement("a", aSettings, "", `${ numbers[i] } &times;, `);
+                } else {
+                    a = Component.createRootElement("a", aSettings, "", `${ numbers[i] } &times;`);
                 }
                 a.addEventListener("click", removeValueHandler);
 
