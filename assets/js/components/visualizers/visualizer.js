@@ -1,4 +1,5 @@
 import { Component } from "../component.js";
+import { Alert } from "../alerts/alert.js";
 
 export class Visualizer extends Component {
 
@@ -23,6 +24,9 @@ export class Visualizer extends Component {
         this.visualizerEl = document.getElementById("visualizer__wrapper");
         this.visualizerContainer = this.visualizerEl.firstElementChild;
         this.visualizer = this.visualizerContainer.firstElementChild;
+
+        // Alert
+        this.alert = new Alert();
 
         this.loadEventHandlers();
     }

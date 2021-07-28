@@ -1,6 +1,8 @@
 import { Component } from "./component.js";
 import { Generator } from "../utilities/generator.js";
 import { ElementAttribute } from "./element-attribute.js";
+import { AlertAttribute } from "./alerts/alert-attribute.js";
+import { alertType } from "./alerts/alert-type.js";
 
 export class Sidebar extends Component {
 
@@ -44,6 +46,7 @@ export class Sidebar extends Component {
         const generatorBtnHandler = () => {
             Generator.generateArray(visualizer.array, visualizer.minValue, visualizer.maxValue, visualizer.size);
             visualizer.reRender();
+            visualizer.alert.addAlert(new AlertAttribute(alertType.SUCCESS, "Generated random array."));
         };
 
         // Event handler to update max value of array item
@@ -51,6 +54,8 @@ export class Sidebar extends Component {
             visualizer.maxValue = this.maxValueRange.value;
             Generator.generateArray(visualizer.array, visualizer.minValue, visualizer.maxValue, visualizer.size);
             visualizer.reRender();
+            visualizer.alert.addAlert(
+                new AlertAttribute(alertType.SUCCESS, `Generated random array with array value of ${visualizer.minValue} - ${visualizer.maxValue}.`));
         };
 
         // Event handler to update size of array
@@ -58,11 +63,15 @@ export class Sidebar extends Component {
             visualizer.size = this.sizeRange.value;
             Generator.generateArray(visualizer.array, visualizer.minValue, visualizer.maxValue, visualizer.size);
             visualizer.reRender();
+            visualizer.alert.addAlert(
+                new AlertAttribute(alertType.SUCCESS, `Generated random array with array length of ${visualizer.size}.`));
         };
 
         // Event handler to update speed of visualizer
         const speedRangeHandler = () => {
             visualizer.speed = this.speedRange.value;
+            visualizer.alert.addAlert(
+                new AlertAttribute(alertType.SUCCESS, `Current visualizing speed: ${visualizer.speed}ms.`));
         };
 
         // Event handler to start visualizing
@@ -80,6 +89,7 @@ export class Sidebar extends Component {
 
             // Disable controls
             visualizer.isRunning = true;
+            visualizer.alert.addAlert(new AlertAttribute(alertType.INFO, `Started visualizing with ${selectedAlgorithm} algorithm.`));
             this.disableControls();
             if (visualizer.windowWidth <= visualizer.tabletSize) {
                 this.resetSidebar();
@@ -191,18 +201,20 @@ export class Sidebar extends Component {
         const generateBtnHandler = el => {
             if (visualizer.isRunning) {
                 return;
-
             }
 
             const closeBtn = el.target.parentNode.querySelector("[data-toggle='modal']");
 
             if (numbers.length <= 1) {
+                visualizer.alert.addAlert(
+                    new AlertAttribute(alertType.DANGER, "Customised array should have more than 1 value in it."));
                 return;
             }
 
             visualizer.array.splice(0, visualizer.array.length, ...numbers);
-
             visualizer.reRender();
+            visualizer.alert.addAlert(
+                new AlertAttribute(alertType.SUCCESS, "Generated customised array."));
             closeBtn.click();
         };
 

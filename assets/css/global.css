@@ -16,7 +16,8 @@
     13. Array Box
     14. Colors
     15. Visibility
-    16. Media Queries
+    16. Alerts
+    17. Media Queries
 
 ****************************************/
 
@@ -566,6 +567,58 @@ input[class="algorithm__radio"][disabled] + .algorithm__selector {
 }
 
 /***************************************
+    Alerts
+****************************************/
+
+#alert {
+    position: fixed;
+    top: 84px;
+    right: 20px;
+    z-index: 15;
+    display: none;
+}
+
+#alert__list {
+    width: 300px;
+}
+
+#alert__list-item {
+    padding: 15px 20px;
+    border-radius: 5px;
+    background-color: transparent;
+    color: transparent;
+    border-color: transparent;
+    box-shadow: 0 3px 5px 0 rgba(0, 0, 0, 0.1);
+}
+
+.alert__list-item--info {
+    background-color: #9999FF !important;
+    border-color: #9999FF !important;
+    color: #F6F6F6 !important;
+}
+
+.alert__list-item--success {
+    background-color: #99FF99 !important;
+    border-color: #99FF99 !important;
+    color: #3D663D !important;
+}
+
+.alert__list-item--danger {
+    background-color: #FF9999 !important;
+    border-color: #FF9999 !important;
+    color: #F6F6F6 !important;
+}
+
+@keyframes alertFadeOut {
+    50% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
+/***************************************
     Media Queries
 ****************************************/
 
@@ -605,31 +658,31 @@ input[class="algorithm__radio"][disabled] + .algorithm__selector {
 }
 
 @media only screen and (max-width: 480px) {
-	#navbar__logo {
-		flex-basis: auto;
-		font-size: 16px;
-	}
-	
-	#navbar__logo,
-	#navbar__navigation > ul > li > a, #navbar__navigation > ul > li > span {
-		padding: 15px;
-	}
-	
-	#sidebar {
-		padding: 15px;
-	}
+    #navbar__logo {
+        flex-basis: auto;
+        font-size: 16px;
+    }
+
+    #navbar__logo,
+    #navbar__navigation > ul > li > a, #navbar__navigation > ul > li > span {
+        padding: 15px;
+    }
+
+    #sidebar {
+        padding: 15px;
+    }
 
     #sidebar__hamburger.hamburger--active {
         top: 24px;
     }
-	
-	#visualizer__wrapper {
-		left: 46px;
-		width: calc(100% - 46px);
-	}
-	
-	#sidebar,
-	#visualizer__wrapper {
-		height: calc(100% - 54px);
-	}
+
+    #visualizer__wrapper {
+        left: 46px;
+        width: calc(100% - 46px);
+    }
+
+    #sidebar,
+    #visualizer__wrapper {
+        height: calc(100% - 54px);
+    }
 }
