@@ -273,7 +273,7 @@ input[disabled] {
     left: 0;
     height: 100%;
     width: 100%;
-    z-index: 1;
+    z-index: 11;
     background-color: rgba(0, 0, 0, 0.2);
 }
 
@@ -466,7 +466,7 @@ input[class="algorithm__radio"][disabled] + .algorithm__selector {
     height: 100%;
     width: 100%;
     background-color: rgba(0, 0, 0, 0.2);
-    z-index: 3;
+    z-index: 11;
 }
 
 .modal__content {
@@ -572,6 +572,7 @@ input[class="algorithm__radio"][disabled] + .algorithm__selector {
 @media only screen and (max-width: 991px) {
     #sidebar {
         width: auto;
+        z-index: 12;
     }
 
     #sidebar__hamburger {

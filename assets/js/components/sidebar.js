@@ -189,18 +189,21 @@ export class Sidebar extends Component {
         };
 
         const generateBtnHandler = el => {
-            if (!visualizer.isRunning) {
-                const closeBtn = el.target.parentNode.querySelector("[data-toggle='modal']");
+            if (visualizer.isRunning) {
+                return;
 
-                if (numbers.length === 0) {
-                    return;
-                }
-
-                visualizer.array.splice(0, visualizer.array.length, ...numbers);
-
-                visualizer.reRender();
-                closeBtn.click();
             }
+
+            const closeBtn = el.target.parentNode.querySelector("[data-toggle='modal']");
+
+            if (numbers.length <= 1) {
+                return;
+            }
+
+            visualizer.array.splice(0, visualizer.array.length, ...numbers);
+
+            visualizer.reRender();
+            closeBtn.click();
         };
 
         this.arrayValueAddBtn.addEventListener("click", arrayValueAddBtnHandler);
