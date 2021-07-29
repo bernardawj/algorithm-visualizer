@@ -17,7 +17,8 @@
     14. Colors
     15. Visibility
     16. Alerts
-    17. Media Queries
+    17. Loader
+    18. Media Queries
 
 ****************************************/
 
@@ -533,7 +534,7 @@ input[class="algorithm__radio"][disabled] + .algorithm__selector {
 }
 
 /***************************************
-    Array Box 
+    Array Box
 ****************************************/
 
 #array__box {
@@ -614,6 +615,107 @@ input[class="algorithm__radio"][disabled] + .algorithm__selector {
         opacity: 1;
     }
     100% {
+        opacity: 0;
+    }
+}
+
+/***************************************
+    Loader
+****************************************/
+
+#loader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background-color: #F6F6F6;
+    z-index: 15;
+}
+
+#loader__wrapper {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 400px;
+    -webkit-transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+    -o-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}
+
+#loader__loading-wrapper {
+    display: block;
+    margin: 0 auto 10px auto;
+    text-align: center;
+}
+
+#loader__progress-bar {
+    position: relative;
+    height: 20px;
+    border: 1px solid #dddddd;
+    background-color: #e8e8e8;
+}
+
+#loader__progress {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 0;
+    background-color: #00274e;
+    -webkit-transition: width 0.5s ease-in-out;
+    -moz-transition: width 0.5s ease-in-out;
+    -o-transition: width 0.5s ease-in-out;
+    transition: width 0.5s ease-in-out;
+}
+
+#loader__progress-bar,
+#loader__progress {
+    border-radius: 5px;
+}
+
+@keyframes loaded {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+    }
+}
+
+.lds-ripple {
+    display: inline-block;
+    position: relative;
+    width: 40px;
+    height: 40px;
+}
+
+.lds-ripple div {
+    position: absolute;
+    border: 2px solid #00274e;
+    opacity: 1;
+    border-radius: 50%;
+    animation: lds-ripple 1s cubic-bezier(0, 0.2, 0.8, 1) infinite;
+}
+
+.lds-ripple div:nth-child(2) {
+    animation-delay: -0.5s;
+}
+
+@keyframes lds-ripple {
+    0% {
+        top: 18px;
+        left: 18px;
+        width: 0;
+        height: 0;
+        opacity: 1;
+    }
+    100% {
+        top: 0;
+        left: 0;
+        width: 36px;
+        height: 36px;
         opacity: 0;
     }
 }
@@ -701,5 +803,9 @@ input[class="algorithm__radio"][disabled] + .algorithm__selector {
     #sidebar,
     #visualizer__wrapper {
         height: calc(100% - 54px);
+    }
+
+    #loader__wrapper {
+        width: 90%;
     }
 }
