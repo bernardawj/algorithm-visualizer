@@ -9,5 +9,6 @@ export const action = {
     MERGE_L: "merge-left",
     MERGE_R: "merge-right",
     MERGE: "merge",
-    FINAL: "final"
+    FINAL: "final",
+    PIVOT: "pivot"
 };

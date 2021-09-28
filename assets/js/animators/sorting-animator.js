@@ -57,6 +57,7 @@ export class SortingAnimator extends Animator {
                     this.swappedAnimation(indexes);
                     break;
                 case action.FINAL:
+                case action.PIVOT:
                     this.finalAnimation(indexes);
                     break;
             }

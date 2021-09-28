@@ -59,6 +59,7 @@ export class QuickSortingAlgorithm extends SortingAlgorithm {
 
         // Swap the pivot point
         QuickSortingAlgorithm.swap(animator, array, low, j);
+        animator.addAnimation(new Animation(action.PIVOT, [j]));
 
         return j;
     }

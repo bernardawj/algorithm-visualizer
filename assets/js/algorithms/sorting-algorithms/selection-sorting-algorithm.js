@@ -36,6 +36,7 @@ export class SelectionSortingAlgorithm extends SortingAlgorithm {
 
                 // Swap the value from the unsorted subarray to the sorted subarray
                 SelectionSortingAlgorithm.swap(animator, array, i, index);
+                animator.addAnimation(new Animation(action.FINAL, [i]));
             }
         } else {
             for (let i = array.length - 1; i >= 0; i--) {
@@ -60,6 +61,7 @@ export class SelectionSortingAlgorithm extends SortingAlgorithm {
 
                 // Swap the value from the unsorted subarray to the sorted subarray
                 SelectionSortingAlgorithm.swap(animator, array, i, index);
+                animator.addAnimation(new Animation(action.FINAL, [i]));
             }
         }
     }

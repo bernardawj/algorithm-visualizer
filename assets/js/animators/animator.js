@@ -47,6 +47,8 @@ export class Animator {
         ];
 
         if (hardReset) {
+            classesToRemove.push("visualizer__list-pivot-position");
+            classesToRemove.push("visualizer__list-final-position");
             classesToRemove.push("visualizer__list-animation-completed");
         }
 

@@ -22,6 +22,8 @@ export class BubbleSortingAlgorithm extends SortingAlgorithm {
                         BubbleSortingAlgorithm.swap(animator, array, j - 1, j);
                     }
                 }
+
+                animator.addAnimation(new Animation(action.FINAL, [array.length - 1 - i]));
             }
         } else {
             let sorted = 0;
@@ -35,6 +37,8 @@ export class BubbleSortingAlgorithm extends SortingAlgorithm {
                     }
                 }
                 sorted++;
+
+                animator.addAnimation(new Animation(action.FINAL, [array.length - 1 - i]));
             }
         }
     }

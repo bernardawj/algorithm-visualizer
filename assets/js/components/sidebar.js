@@ -129,10 +129,10 @@ export class Sidebar extends Component {
                 visualizer.pauseVisualizer(this);
                 if (visualizer.isPausing) {
                     el.target.textContent = "Continue";
-                    visualizer.alert.addAlert(new AlertAttribute(alertType.INFO, `Continued visualizing of ${ this.getSelectedAlgorithm() } algorithm.`));
+                    visualizer.alert.addAlert(new AlertAttribute(alertType.INFO, `Paused visualizing of ${ this.getSelectedAlgorithm() } algorithm.`));
                 } else {
                     el.target.textContent = "Pause";
-                    visualizer.alert.addAlert(new AlertAttribute(alertType.INFO, `Paused visualizing of ${ this.getSelectedAlgorithm() } algorithm.`));
+                    visualizer.alert.addAlert(new AlertAttribute(alertType.INFO, `Continued visualizing of ${ this.getSelectedAlgorithm() } algorithm.`));
                 }
             }
         };
