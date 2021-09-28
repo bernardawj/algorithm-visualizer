@@ -19,6 +19,7 @@ export class Visualizer extends Component {
         this.array = [];
         this.elements = [];
         this.isRunning = false;
+        this.isPausing = false;
 
         // DOM elements
         this.visualizerEl = document.getElementById("visualizer__wrapper");
@@ -43,6 +44,11 @@ export class Visualizer extends Component {
     reset() {
         this.elements.splice(0);
         Visualizer.removeAllChildElements(this.visualizer);
+    }
+
+    resetStatus() {
+        this.isPausing = false;
+        this.isRunning = false;
     }
 
     reRender() {

@@ -8,7 +8,8 @@ export class MergeSortingAlgorithm extends SortingAlgorithm {
 
     static sort(animator, array, descendingOrder = false) {
         // One of the quickest sorting algorithm that uses divide and conquer to split its values up to sub-arrays and
-        // merge them back according to its value Time complexity = O(nLog(n))
+        // merge them back according to its value
+        // Time complexity = O(nLog(n))
 
         MergeSortingAlgorithm.split(animator, array, descendingOrder);
     }

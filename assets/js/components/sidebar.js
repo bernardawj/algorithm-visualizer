@@ -22,6 +22,9 @@ export class Sidebar extends Component {
         this.speedRange = document.getElementById("sidebar__settings-speed");
         this.algorithmRadioBtns = document.getElementsByClassName("algorithm__radio");
         this.startVisualizingBtn = document.getElementById("start-visualizing");
+        this.pauseVisualizingBtn = document.getElementById("pause-visualizing");
+        this.stopVisualizingBtn = document.getElementById("stop-visualizing");
+        this.visualizerBtnList = document.getElementById("visualizer__button-list");
         this.reverseCbx = document.getElementById("sidebar__algorithms-reverse");
         this.hamburgerBtn = document.getElementById("sidebar__hamburger");
         this.overlay = document.getElementById("overlay");
@@ -103,12 +106,35 @@ export class Sidebar extends Component {
             visualizer.isRunning = true;
             visualizer.alert.addAlert(new AlertAttribute(alertType.INFO, `Started visualizing with ${ selectedAlgorithm } algorithm.`));
             this.disableControls();
+            this.enableButtonList();
             if (visualizer.windowWidth <= visualizer.tabletSize) {
                 this.resetSidebar();
             }
 
             // Animate visualizer
             visualizer.visualize(this, selectedAlgorithm);
+        };
+
+        // Event handler for stop visualizing
+        const stopVisualizingBtnHandler = () => {
+            if (visualizer.isRunning) {
+                visualizer.stopVisualizer(this);
+                visualizer.alert.addAlert(new AlertAttribute(alertType.INFO, `Stopped visualizing of ${ this.getSelectedAlgorithm() } algorithm.`));
+            }
+        };
+
+        // Event handler for pause visualizing
+        const pauseVisualizingBtnHandler = (el) => {
+            if (visualizer.isRunning) {
+                visualizer.pauseVisualizer(this);
+                if (visualizer.isPausing) {
+                    el.target.textContent = "Continue";
+                    visualizer.alert.addAlert(new AlertAttribute(alertType.INFO, `Continued visualizing of ${ this.getSelectedAlgorithm() } algorithm.`));
+                } else {
+                    el.target.textContent = "Pause";
+                    visualizer.alert.addAlert(new AlertAttribute(alertType.INFO, `Paused visualizing of ${ this.getSelectedAlgorithm() } algorithm.`));
+                }
+            }
         };
 
         // Event handler for toggling reverse checkbox
@@ -140,6 +166,8 @@ export class Sidebar extends Component {
         this.speedRange.addEventListener("input", speedRangeHandler);
         this.speedRange.addEventListener("change", speedRangeOnChangeHandler);
         this.startVisualizingBtn.addEventListener("click", startVisualizingBtnHandler);
+        this.stopVisualizingBtn.addEventListener("click", stopVisualizingBtnHandler);
+        this.pauseVisualizingBtn.addEventListener("click", pauseVisualizingBtnHandler);
         this.reverseCbx.addEventListener("change", reverseCbxHandler);
         this.customisedArray(visualizer);
         this.hamburger();
@@ -279,7 +307,8 @@ export class Sidebar extends Component {
         this.reverseCbx.disabled = true;
         this.generatorBtn.classList.add("button__disabled");
         this.customisedArrayBtn.classList.add("button__disabled");
-        this.startVisualizingBtn.classList.add("button__disabled");
+        this.startVisualizingBtn.style.display = "none";
+        this.visualizerBtnList.style.display = "block";
         for (const radio of this.algorithmRadioBtns) {
             if (!radio.checked) {
                 radio.disabled = true;
@@ -293,11 +322,23 @@ export class Sidebar extends Component {
         this.reverseCbx.disabled = false;
         this.generatorBtn.classList.remove("button__disabled");
         this.customisedArrayBtn.classList.remove("button__disabled");
-        this.startVisualizingBtn.classList.remove("button__disabled");
+        this.startVisualizingBtn.style.display = "block";
+        this.visualizerBtnList.style.display = "none";
         for (const radio of this.algorithmRadioBtns) {
             if (!radio.checked) {
                 radio.disabled = false;
             }
         }
+    }
+
+    disableButtonList() {
+        this.pauseVisualizingBtn.textContent = "Pause";
+        this.pauseVisualizingBtn.classList.add("button__disabled");
+        this.stopVisualizingBtn.classList.add("button__disabled");
+    }
+
+    enableButtonList() {
+        this.pauseVisualizingBtn.classList.remove("button__disabled");
+        this.stopVisualizingBtn.classList.remove("button__disabled");
     }
 }

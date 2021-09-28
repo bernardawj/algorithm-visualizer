@@ -8,6 +8,8 @@ export class Animator {
             throw new Error("Invalid visualizer.");
         }
 
+        this.currentAnimation = 0;
+        this.animationTimeout = null;
         this.animations = [];
         this.visualizer = visualizer;
     }

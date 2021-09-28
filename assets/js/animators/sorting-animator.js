@@ -15,17 +15,23 @@ export class SortingAnimator extends Animator {
         }
 
         const animateProcess = (currentIndex = 0) => {
+            if (this.visualizer.isPausing) {
+                return;
+            }
+
             // Reset element classes
             this.resetElementClasses();
 
             // Check if there are any animations
             // Exit if animations are completed
             if (this.animations.length === 0 || currentIndex >= this.animations.length) {
+                this.currentAnimation = 0;
+                sidebar.disableButtonList();
                 this.completedAnimation();
                 setTimeout(() => {
                     this.resetElementClasses(true);
                     sidebar.enableControls();
-                    this.visualizer.isRunning = false;
+                    this.visualizer.resetStatus();
                 }, 1000);
                 return;
             }
@@ -55,10 +61,11 @@ export class SortingAnimator extends Animator {
                     break;
             }
 
-            setTimeout(animateProcess, tempSpeed, ++currentIndex);
+            this.animationTimeout = setTimeout(animateProcess, tempSpeed, ++currentIndex);
+            this.currentAnimation = currentIndex;
         }
 
-        animateProcess();
+        animateProcess(this.currentAnimation);
     }
 
     searchAnimation(indexes) {

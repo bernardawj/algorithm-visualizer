@@ -46,6 +46,20 @@ export class SortingVisualizer extends Visualizer {
         this.animator.animate(sidebar);
     }
 
+    stopVisualizer(sidebar) {
+        this.resetStatus();
+        this.animator.animate(sidebar);
+        this.animator.resetAnimations();
+        this.reRender();
+    }
+
+    pauseVisualizer(sidebar) {
+        this.isPausing = !this.isPausing;
+        if (!this.isPausing) {
+            this.animator.animate(sidebar);
+        }
+    }
+
     renderArrayData() {
         // Create un-ordered list element
         const ulSettings = [
